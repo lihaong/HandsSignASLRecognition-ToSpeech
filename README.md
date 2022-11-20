@@ -26,10 +26,10 @@ Cara run.
 ```bash
 python app.py
 ```
-Petunjuk : 
-    1. Tekan S untuk Capture Prediksi menjadi word
-    2. Tekan V untuk memberikan spasi pada kata
-    3. Tekan X untuk export kalimat menjadi voice
+# Petunjuk : 
+* Tekan S untuk Capture Prediksi menjadi word
+* Tekan V untuk memberikan spasi pada kata
+* Tekan X untuk export kalimat menjadi voice
 
 The following options can be specified when running the demo.
 * --device<br>Specifying the camera device number (Default：0)
@@ -95,7 +95,7 @@ The following files are stored.
 ### utils/cvfpscalc.py
 This is a module for FPS measurement.
 
-# Training
+# Training di non-aktifkan
 Hand sign recognition and finger gesture recognition can add and change training data and retrain the model.
 
 ### Hand sign recognition training
