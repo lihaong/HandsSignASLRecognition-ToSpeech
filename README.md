@@ -26,6 +26,9 @@ Cara run.
 ```bash
 python app.py
 ```
+# ASL
+![image](https://user-images.githubusercontent.com/54676003/202891969-7de03906-426a-46a9-8c3e-5b66401b7365.png)
+
 # Petunjuk : 
 * Tekan S untuk Capture Prediksi menjadi word
 * Tekan V untuk memberikan spasi pada kata
