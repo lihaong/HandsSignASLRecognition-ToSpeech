@@ -16,6 +16,10 @@ from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
 
+from flask import Flask, request
+from markupsafe import escape
+
+
 def get_args():
     parser = argparse.ArgumentParser()
 
@@ -196,8 +200,8 @@ def select_mode(key, mode):
     #     number = key - 48
     if key == 110:  # press N
         mode = 0
-    # if key == 115:  # k
-    #     mode = 1
+    if key == 115:  # s
+        mode = 1
     # if key == 104:  # h
     #     mode = 2
     if key == 120: #press X
