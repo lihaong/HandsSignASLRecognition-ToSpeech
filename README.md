@@ -1,7 +1,7 @@
 # hand-gesture-recognition-using-mediapipe
-Estimate hand pose using MediaPipe (Python version).<br> This is a sample 
-program that recognizes hand signs and finger gestures with a simple MLP using the detected key points.
-<br> ❗ _️**This is English Translated version of the [original repo](https://github.com/Kazuhito00/hand-gesture-recognition-using-mediapipe). All Content is translated to english along with comments and notebooks**_ ❗
+Estimate hand pose for ASL(American Sign Language) using MediaPipe (Python version).<br> Ini adalah sampel
+program yang mengenali tanda tangan dan gerakan jari dengan MLP sederhana menggunakan keypoint yang terdeteksi.
+<br> ❗ _️**Versi modifikasi dari [original repo](https://github.com/Kazuhito00/hand-gesture-recognition-using-mediapipe).**_ ❗
 <br> 
 ![mqlrf-s6x16](https://user-images.githubusercontent.com/37477845/102222442-c452cd00-3f26-11eb-93ec-c387c98231be.gif)
 
@@ -13,17 +13,26 @@ This repository contains the following contents.
 * Learning data for finger gesture recognition and notebook for learning
 
 # Requirements
-* mediapipe 0.8.1
-* OpenCV 3.4.2 or Later
-* Tensorflow 2.3.0 or Later<br>tf-nightly 2.5.0.dev or later (Only when creating a TFLite for an LSTM model)
-* scikit-learn 0.23.2 or Later (Only if you want to display the confusion matrix) 
-* matplotlib 3.3.2 or Later (Only if you want to display the confusion matrix)
+* mediapipe 0.8.11
+* OpenCV 4.6.0.66
+* Tensorflow 2.10.0 <br>tf-nightly 2.5.0.dev or later (Only when creating a TFLite for an LSTM model)
+* scikit-learn 1.1.3 or Later (Only if you want to display the confusion matrix) 
+* matplotlib 3.6.2 or Later (Only if you want to display the confusion matrix)
+* gTTS 2.2.4
 
-# Demo
-Here's how to run the demo using your webcam.
+
+# Demo Program
+Cara run.
 ```bash
 python app.py
 ```
+# ASL
+![image](https://user-images.githubusercontent.com/54676003/202891969-7de03906-426a-46a9-8c3e-5b66401b7365.png)
+
+# Petunjuk : 
+* Tekan S untuk Capture Prediksi menjadi word
+* Tekan V untuk memberikan spasi pada kata
+* Tekan X untuk export kalimat menjadi voice
 
 The following options can be specified when running the demo.
 * --device<br>Specifying the camera device number (Default：0)
@@ -89,7 +98,7 @@ The following files are stored.
 ### utils/cvfpscalc.py
 This is a module for FPS measurement.
 
-# Training
+# Training di non-aktifkan
 Hand sign recognition and finger gesture recognition can add and change training data and retrain the model.
 
 ### Hand sign recognition training
