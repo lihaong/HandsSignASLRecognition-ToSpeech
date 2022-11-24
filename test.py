@@ -151,7 +151,7 @@ def play():
                 #             pre_processed_point_history_list)
 
                 # Hand sign classification
-                hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
+                hand_sign_id = keypointClassifier(pre_processed_landmark_list)
                 if hand_sign_id == 3:  # Point gesture
                     point_history.append(landmark_list[8])
                 elif hand_sign_id == 8:
@@ -197,9 +197,26 @@ def play():
         yield (b'--frame\r\n' 
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-def keypointClassifier():
+def keypointClassifier(landmark_list):
+    model_path='model/keypoint_classifier/keypoint_classifier.tflite'
+    num_threads=1,
+
     interpreter = tf.lite.Interpreter(model_path=model_path,
-                                      num_threads=num_threads)
+                                               num_threads=num_threads)
+    interpreter.allocate_tensors()
+    input_details = interpreter.get_input_details()
+    output_details = interpreter.get_output_details()
+
+    input_details_tensor_index = input_details[0]['index']
+    interpreter.set_tensor( input_details_tensor_index,
+                            np.array([landmark_list], dtype=np.float32))
+    interpreter.invoke()
+    output_details_tensor_index = output_details[0]['index']
+    result = interpreter.get_tensor(output_details_tensor_index)
+    result_index = np.argmax(np.squeeze(result))
+    return result_index
+
+
 # def generate_frames():
 #     while True:
 #
