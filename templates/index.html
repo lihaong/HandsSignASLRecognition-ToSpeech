@@ -1,0 +1,194 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/logo.png" />
+    <title>Republic Of Gamers Nation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+
+  <body>
+    <nav>
+      <div class="container">
+        <div class="flex">
+          <div class="img-wrapper">
+            <img src="{{ url_for('static', filename='images/SIBI.png') }}" alt="logo" />
+          </div>
+          
+          <ul id="menu" class="menu">
+            <li>
+              <a class="btn" href="#info">Information</a>
+            </li>
+            <li>
+              <a class="btn" href="#Application">Application</a>
+            </li>
+            <li>
+              <a class="btn" href="#US">About Us</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header id="info">
+      <div class="container flex">
+        <div class="flex align-start">
+          <div class="left-paragraph ">
+            <h1>Our Mission</h1>
+            <p>
+              Unite gamers of diverse backgrounds
+              to achieve their potential together
+              in play. Through innovative
+              technology and exceptional
+              experiences, we can push boundaries
+              to create a world without limits.
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+    <section id="Application" class="container" >
+      <div class="bg-violet">
+        <div>
+          <h2>Application</h2>
+        </div>
+        <div>
+        <img src="{{ url_for('video') }}" width="100%"/>
+        </div>
+      </div>
+    </section>
+
+    <section id="US" class="container">
+      <h2  >Our Team</h2>
+      <div class="flex">
+        <div class="card product">
+          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />
+          <h3 class="product-title">
+            Muhammad Fajar Andikha
+          </h3>
+          <p class="paragraph">
+            UPN Veteran Yogyakarta
+          </p>
+        </div>
+
+        <div class="card product">
+          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />
+          <h3 class="product-title">
+            Muhammad Fajar Andikha
+          </h3>
+          <p class="paragraph">
+            UPN Veteran Yogyakarta
+          </p>
+        </div>
+
+        <div class="card product">
+          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />
+          <h3 class="product-title">
+            Muhammad Fajar Andikha
+          </h3>
+          <p class="paragraph">
+            UPN Veteran Yogyakarta
+          </p>
+        </div>
+
+        <div class="card product">
+          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />
+          <h3 class="product-title">
+            Muhammad Fajar Andikha
+          </h3>
+          <p class="paragraph">
+            UPN Veteran Yogyakarta
+          </p>
+        </div>
+
+      </div>
+
+
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="flex border-bottom">
+          <ul class="flex">
+            <li>
+              <a href="https://rog.asus.com/id/">
+                <img src="./images/icon-facebook.svg" alt="facebook" />
+              </a>
+            </li>
+            <li>
+              <a href="https://rog.asus.com/id/">
+                <img src="./images/icon-twitter.svg" alt="twitter" />
+              </a>
+            </li>
+            <li>
+              <a href="https://rog.asus.com/id/">
+                <img src="./images/icon-pinterest.svg" alt="pinterest" />
+              </a>
+            </li>
+            <li>
+              <a href="https://rog.asus.com/id/">
+                <img src="./images/icon-instagram.svg" alt="instagram" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex align-start">
+          <div>
+            <h4>Our company</h4>
+            <ul>
+              <li><a href="#">How we work</a></li>
+              <li><a href="#">Cookies</a></li>
+              <li><a href="#">Reviews</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Help me</h4>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li>
+                <a href="#">Terms of use</a>
+              </li>
+              <li>
+                <a href="#">Privacy policy</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="#">Sales</a></li>
+              <li><a href="#">Support</a></li>
+              <li><a href="#">Live chat</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Others</h4>
+            <ul>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Press</a></li>
+              <li><a href="#">Licenses</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <span class="author">
+          Crafted with Effort by Muhammad Fajar
+          Andikha & Gilang Yoenal Marinta, © 2021
+        </span>
+      </div>
+    </footer>
+  </body>
+
+  </html>
