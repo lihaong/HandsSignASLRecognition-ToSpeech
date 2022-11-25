@@ -191,6 +191,12 @@ padding-top: 42px;
 margin-bottom: 45px;
 }
 
+.frame img {
+width: 75%;
+}
+#kalimat {
+color: var(--white);
+}
 .card {
   width: 350px;
   height: 470px;
@@ -238,10 +244,10 @@ height: 700px;
   padding: 30px;
   margin: 40px auto;
   z-index: 20;
+  text-align: center;
 }
 
 .bg-violet h2 {
-text-align: center;
   color: var(--white);
   font-size: 3em;
   padding-top: 0px;
@@ -289,34 +295,4 @@ footer li a {
 .copyright .author {
   display: flex;
   justify-content: center;
-}
-
-/* Table */
-.content-table {
-  border-collapse: collapse;
-  margin: 20px 0;
-  width: 1160px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-.content-table thead tr {
-  background-color: var(--black);
-  color: var(--white);
-  text-align: left;
-}
-.content-table th,
-.content-table td {
-  padding: 12px 15px;
-}
-
-.content-table td {
-  max-width: 180px;
-  overflow: hidden;
-}
-.content-table td a {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.content-table tbody tr {
-  border-bottom: 1px solid var(--black);
 }

@@ -1,4 +1,9 @@
 import csv
+import sys
+import os
+import glob
+import re
+import numpy as np
 import tensorflow as tf
 import copy
 import argparse
@@ -16,10 +21,19 @@ from model import KeyPointClassifier
 from model import PointHistoryClassifier
 
 from flask import Flask, render_template, Response
+from werkzeug.utils import secure_filename
+# from gevent.pywsgi import WSGIServer
+
+from keras.applications.imagenet_utils import preprocess_input, decode_predictions
+from keras.models import load_model
+from keras.preprocessing import image
 
 app = Flask(__name__)
 # cap = cv.VideoCapture(0)
 
+# MODEL_PATH = 'model/keypoint_classifier/keypoint_classifier.h5'
+# model = load_model(MODEL_PATH)
+# model._make_predict_function()
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -84,6 +98,7 @@ def play():
     #
     keypoint_classifier_labels = ["A","B","C","D", "E", "F", "G", "H", "I", "K", "L", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"]
 
+    print(keypoint_classifier_labels)
     #
     # with open(
     #         'model/point_history_classifier/point_history_classifier_label.csv',
@@ -92,7 +107,9 @@ def play():
     #     point_history_classifier_labels = [
     #         row[0] for row in point_history_classifier_labels
     #     ]
+
     point_history_classifier_labels = ["Stop", "J", "Z"]
+    print(point_history_classifier_labels)
 
 
     # FPS Measurement ########################################################
@@ -120,6 +137,7 @@ def play():
 
         # Camera capture #####################################################
         ret, image = cap.read()
+
         if not ret:
             break
         image = cv.flip(image, 1)  # Mirror display
@@ -132,7 +150,7 @@ def play():
         results = hands.process(image)
         image.flags.writeable = True
 
-        #  ####################################################################
+         ####################################################################
         if results.multi_hand_landmarks is not None:
             for hand_landmarks, handedness in zip(results.multi_hand_landmarks,
                                                   results.multi_handedness):
@@ -151,45 +169,45 @@ def play():
                 #             pre_processed_point_history_list)
 
                 # Hand sign classification
-                hand_sign_id = keypointClassifier(pre_processed_landmark_list)
-                if hand_sign_id == 3:  # Point gesture
-                    point_history.append(landmark_list[8])
-                elif hand_sign_id == 8:
-                    point_history.append(landmark_list[20])
-                else:
-                    point_history.append([0, 0])
+                # hand_sign_id = keypointClassifier()
+                # if hand_sign_id == 3:  # Point gesture
+                #     point_history.append(landmark_list[8])
+                # elif hand_sign_id == 8:
+                #     point_history.append(landmark_list[20])
+                # else:
+                #     point_history.append([0, 0])
 
                 # Finger gesture classification
-                finger_gesture_id = 0
-                point_history_len = len(pre_processed_point_history_list)
-                if point_history_len == (history_length * 2):
-                    finger_gesture_id = point_history_classifier(
-                        pre_processed_point_history_list)
-
-                # Calculates the gesture IDs in the latest detection
-                finger_gesture_history.append(finger_gesture_id)
-                most_common_fg_id = Counter(
-                    finger_gesture_history).most_common()
+                # # finger_gesture_id = 0
+                # # point_history_len = len(pre_processed_point_history_list)
+                # # if point_history_len == (history_length * 2):
+                # #     finger_gesture_id = pointhistoryClassifier(
+                # #         pre_processed_point_history_list)
+                #
+                # # Calculates the gesture IDs in the latest detection
+                # finger_gesture_history.append(finger_gesture_id)
+                # most_common_fg_id = Counter(
+                #     finger_gesture_history).most_common()
 
                 # Drawing part
                 debug_image = draw_bounding_rect(use_brect, debug_image, brect)
                 # debug_image = draw_landmarks(debug_image, landmark_list) #gambar skeleton
-                debug_image, words = draw_info_text(
-                    debug_image,
-                    brect,
-                    handedness,
-                    keypoint_classifier_labels[hand_sign_id],
-                    point_history_classifier_labels[most_common_fg_id[0][0]],
-                )
-                if key == 115:  # press S
-                    save_words(words, mode)
-                if key == 118:  # press V
-                    save_words(" ", mode)
+                # # debug_image, words = draw_info_text(
+                # #     debug_image,
+                # #     brect,
+                # #     handedness,
+                # #     keypoint_classifier_labels[hand_sign_id],
+                # #     point_history_classifier_labels[most_common_fg_id[0][0]],
+                # # )
+                # if key == 115:  # press S
+                #     save_words(words, mode)
+                # if key == 118:  # press V
+                #     save_words(" ", mode)
         else:
             point_history.append([0, 0])
 
         # debug_image = draw_point_history(debug_image, point_history)  # gambar titik hijau
-        # debug_image = draw_info(debug_image, fps, mode, number)
+        debug_image = draw_info(debug_image, fps, mode, number)
 
         ret, buffer = cv.imencode('.jpg', debug_image)
         frame = buffer.tobytes()
@@ -197,12 +215,13 @@ def play():
         yield (b'--frame\r\n' 
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-def keypointClassifier(landmark_list):
-    model_path='model/keypoint_classifier/keypoint_classifier.tflite'
-    num_threads=1,
-
-    interpreter = tf.lite.Interpreter(model_path=model_path,
-                                               num_threads=num_threads)
+def keypointClassifier():
+    landmark_list = []
+    model_path = 'model/point_history_classifier/point_history_classifier.tflite'
+    num_threads = 1
+    # with open(model_path, 'rb') as fid:
+    #     tflite_model = fid.read()
+    interpreter = tf.lite.Interpreter(model_path=model_path, num_threads=num_threads)
     interpreter.allocate_tensors()
     input_details = interpreter.get_input_details()
     output_details = interpreter.get_output_details()
@@ -214,6 +233,38 @@ def keypointClassifier(landmark_list):
     output_details_tensor_index = output_details[0]['index']
     result = interpreter.get_tensor(output_details_tensor_index)
     result_index = np.argmax(np.squeeze(result))
+    return result_index
+
+def pointhistoryClassifier(point_history):
+    model_path='model/point_history_classifier/point_history_classifier.tflite',
+    score_th=0.5
+    invalid_value=0
+    num_threads=1
+    interpreter = tf.lite.Interpreter(model_path=model_path,
+                                      num_threads=num_threads)
+
+    interpreter.allocate_tensors()
+    input_details = interpreter.get_input_details()
+    output_details = interpreter.get_output_details()
+
+    score_th = score_th
+    invalid_value = invalid_value
+
+    input_details_tensor_index = input_details[0]['index']
+    interpreter.set_tensor(
+            input_details_tensor_index,
+            np.array([point_history], dtype=np.float32))
+    interpreter.invoke()
+
+    output_details_tensor_index = output_details[0]['index']
+
+    result = interpreter.get_tensor(output_details_tensor_index)
+
+    result_index = np.argmax(np.squeeze(result))
+
+    if np.squeeze(result)[result_index] < score_th:
+            result_index = invalid_value
+
     return result_index
 
 
@@ -427,4 +478,8 @@ def exportText():
 
 
 if __name__ == "__main__":
+    # keypoint_classifier = keypointClassifier()
+    # point_history_classifier = pointhistoryClassifier()
+    # model = make_model()
+    # model = tf.keras.models.load_model('model/keypoint_classifier/keypoint_classifier.h5')
     app.run(debug=False)

@@ -8,16 +8,29 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./images/logo.png" />
     <title>Republic Of Gamers Nation</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <script type="text/javascript">
+    var interval = setInterval(update_values,1000);
+    function update_values() {
+    $.getJSON($SCRIPT_ROOT + '/text',
+    function(data) {
+    $('#result').text(data.result);
+    console.log(data)
+    });
+    };
+
+    </script>
   </head>
 
-  <body>
+  <body onload="update_values">
     <nav>
       <div class="container">
         <div class="flex">
           <div class="img-wrapper">
             <img src="{{ url_for('static', filename='images/SIBI.png') }}" alt="logo" />
           </div>
-          
+
           <ul id="menu" class="menu">
             <li>
               <a class="btn" href="#info">Information</a>
@@ -52,15 +65,20 @@
       </div>
     </header>
 
-
     <section id="Application" class="container" >
       <div class="bg-violet">
         <div>
           <h2>Application</h2>
         </div>
-        <div>
-        <img src="{{ url_for('video') }}" width="100%"/>
+        <div class="frame">
+        <img src="{{ url_for('video') }}"/>
         </div>
+        <p id="result">?</p>
+        <script> document.getElementById("result").innerHTML;</script>
+        <button class="btn login">How we work</button>
+
+
+
       </div>
     </section>
 

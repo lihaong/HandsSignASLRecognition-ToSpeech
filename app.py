@@ -15,10 +15,22 @@ from gtts import gTTS
 from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
-
-from flask import Flask, request
+from flask import Flask, render_template, Response, jsonify
+import time
 from markupsafe import escape
+app = Flask(__name__)
 
+@app.route('/text', methods = ['GET'])
+def text():
+    return jsonify(result=time.time())
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/video')
+def video():
+    return Response(main(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -176,6 +188,8 @@ def main():
                     keypoint_classifier_labels[hand_sign_id],
                     point_history_classifier_labels[most_common_fg_id[0][0]],
                 )
+                save_words(words, mode)
+                animal = words
                 if key == 115: #press S
                     save_words(words, mode)
                 if key == 118: #press V
@@ -188,10 +202,11 @@ def main():
         debug_image = draw_info(debug_image, fps, mode, number)
 
         # Screen reflection #############################################################
-        cv.imshow('Hand Gesture Recognition', debug_image)
+        ret, buffer = cv.imencode('.jpg', debug_image)
+        frame = buffer.tobytes()
 
-    cap.release()
-    cv.destroyAllWindows()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
 def select_mode(key, mode):
@@ -577,10 +592,17 @@ def save_words(word, mode):
     f = open("sentence.txt", "r")
     print(f.read())
 
+def readText():
+    f = open("sentence.txt", "r")
+    return f.read()
+
+
 def exportText():
     text = open("sentence.txt", "r").read()
-    text2speech = gTTS(text=text, lang="en", slow=False)
+    text2speech = gTTS(text=text, lang="id", slow=False)
     text2speech.save('exportSpeech.mp3')
 
 if __name__ == '__main__':
-    main()
+    # keypoint_classifier = KeyPointClassifier()
+    # point_history_classifier = PointHistoryClassifier()
+    app.run(debug=False)
