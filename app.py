@@ -15,22 +15,68 @@ from gtts import gTTS
 from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
-from flask import Flask, render_template, Response, jsonify
-import time
-from markupsafe import escape
+from flask import Flask, render_template, Response, jsonify, url_for
+
+
 app = Flask(__name__)
 
-@app.route('/text', methods = ['GET'])
-def text():
-    return jsonify(result=time.time())
+data = " "
+counter = 0
+
+
+@app.route('/insert', methods=['GET', 'POST'])
+def insert():
+    global data, counter
+    save_words(data, counter)
+    return jsonify('', render_template('text_model.html', x=readText()))
+
+@app.route('/delete', methods=['GET', 'POST'])
+def delete():
+    word = readText()
+    newWord = word[0:-1]
+    save_words(newWord, 0)
+    return jsonify({'link': "hello"}, render_template('text_model.html', x=readText()))
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', x=data)
 
 @app.route('/video')
 def video():
     return Response(main(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route("/space", methods=['GET', 'POST'])
+def space():
+    space = " "
+    save_words(space, counter)
+    return jsonify('', render_template('text_model.html', x=readText()))
+
+@app.route("/export", methods=['GET', 'POST'])
+def export():
+    exportText()
+    return jsonify('', render_template('text_model.html'))
+
+def readText():
+    f = open("sentence.txt", "r")
+    word = f.read()
+    return word
+
+def save_words(word, mode):
+    global counter
+    if mode == 0:
+        f = open("sentence.txt", "w")
+        f.write(word)
+        f.close()
+        counter = 1
+    else:
+        f = open("sentence.txt", "a")
+        f.write(word)
+        f.close()
+
+def exportText():
+    text = open("sentence.txt", "r").read()
+    text2speech = gTTS(text=text, lang="id", slow=False)
+    text2speech.save('static/audio/exportSpeech.mp3')
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -55,6 +101,7 @@ def get_args():
 
 
 def main():
+    global data
     # Argument parsing #################################################################
     args = get_args()
 
@@ -113,7 +160,6 @@ def main():
 
     #  ########################################################################
     mode = 0
-    save_words(" ", mode)
 
     while True:
         fps = cvFpsCalc.get()
@@ -156,7 +202,6 @@ def main():
                 # logging_csv(number, mode, pre_processed_landmark_list,
                 #             pre_processed_point_history_list)
 
-
                 # Hand sign classification
                 hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
                 if hand_sign_id == 3:  # Point gesture
@@ -188,23 +233,17 @@ def main():
                     keypoint_classifier_labels[hand_sign_id],
                     point_history_classifier_labels[most_common_fg_id[0][0]],
                 )
-                save_words(words, mode)
-                animal = words
-                if key == 115: #press S
-                    save_words(words, mode)
-                if key == 118: #press V
-                    save_words(" ", mode)
+                data = words
+
         else:
             point_history.append([0, 0])
 
-
-        debug_image = draw_point_history(debug_image, point_history) #gambar titik hijau
+        debug_image = draw_point_history(debug_image, point_history)  # gambar titik hijau
         debug_image = draw_info(debug_image, fps, mode, number)
 
         # Screen reflection #############################################################
         ret, buffer = cv.imencode('.jpg', debug_image)
         frame = buffer.tobytes()
-
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
@@ -219,7 +258,7 @@ def select_mode(key, mode):
         mode = 1
     # if key == 104:  # h
     #     mode = 2
-    if key == 120: #press X
+    if key == 120:  # press X
         exportText()
     return number, mode
 
@@ -306,6 +345,7 @@ def pre_process_point_history(image, point_history):
         itertools.chain.from_iterable(temp_point_history))
 
     return temp_point_history
+
 
 #
 # def logging_csv(number, mode, landmark_list, point_history_list):
@@ -519,15 +559,12 @@ def draw_bounding_rect(use_brect, image, brect):
         # Outer rectangle
         cv.rectangle(image, (brect[0], brect[1]), (brect[2], brect[3]),
                      (0, 0, 0), 1)
-
     return image
-
 
 def draw_info_text(image, brect, handedness, hand_sign_text,
                    finger_gesture_text):
     cv.rectangle(image, (brect[0], brect[1]), (brect[2], brect[1] - 22),
                  (0, 0, 0), -1)
-
 
     info_text = handedness.classification[0].label[0:]
     if hand_sign_text == "I" and finger_gesture_text == "J":
@@ -578,31 +615,6 @@ def draw_info(image, fps, mode, number):
                        cv.LINE_AA)
     return image
 
-def save_words(word, mode):
-    # open and read the file after the appending:
-    if mode == 0:
-        f = open("sentence.txt", "w")
-        f.write(word)
-        f.close()
-    else:
-        f = open("sentence.txt", "a")
-        f.write(word)
-        f.close()
-
-    f = open("sentence.txt", "r")
-    print(f.read())
-
-def readText():
-    f = open("sentence.txt", "r")
-    return f.read()
-
-
-def exportText():
-    text = open("sentence.txt", "r").read()
-    text2speech = gTTS(text=text, lang="id", slow=False)
-    text2speech.save('exportSpeech.mp3')
 
 if __name__ == '__main__':
-    # keypoint_classifier = KeyPointClassifier()
-    # point_history_classifier = PointHistoryClassifier()
     app.run(debug=False)

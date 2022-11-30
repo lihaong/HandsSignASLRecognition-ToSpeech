@@ -7,14 +7,16 @@
 }
 
 :root {
+  --yellow : rgb(222, 245, 229);
+  --soft-blue : rgb(153, 196, 200);
   --dark-violet: hsl(256, 26%, 20%);
   --greyish-blue: hsl(216, 30%, 68%);
   --very-dark-violet: hsl(270, 9%, 17%);
   --dark-grayish-violet: hsl(278, 67%, 2%);
   --very-light-gray: hsl(0, 0%, 98%);
-  --black: #171717;
+  --black: rgb(57, 62, 70);
   --white: #fffdfa;
-  --red: #f11e2c;
+  --red: rgb(247, 164, 164);
   --font-karla: "Karla", sans-serif;
   --font-neue: "Bebas Neue", cursive;
   --font-odibee: "Odibee Sans", cursive;
@@ -153,7 +155,9 @@ nav li a {
   text-transform: uppercase;
   text-decoration: none;
 }
-
+audio{
+height: 30px;
+}
 .login {
   background-color: var(--white);
   color: var(--black);
@@ -168,7 +172,7 @@ nav li a {
 /* Header styling */
 header {
 
-background-color: var(--greyish-blue);
+background-color: var(--yellow);
 
 height: 745px;
   color: var(--black);
@@ -184,15 +188,32 @@ section .container {
 
 #Application {
 height : 745px;
-padding-top: 42px;
+padding-top: 15px;
 }
-
+#space{
+width:400px;
+}
+#result{
+color: var(--black);
+font-size : 20px;
+font-weight: bolder;
+margin: 15px 0px 10px 0px;
+}
 #US {
 margin-bottom: 45px;
 }
-
+.up-btn{
+margin-top: 15px;
+margin-bottom: 10px;
+}
+.custom{
+padding: 10px 15px 10px 15px;
+height: 40px;
+font-size: 12px;
+}
 .frame img {
-width: 75%;
+border-radius: 30px;
+width: 65%;
 }
 #kalimat {
 color: var(--white);
@@ -229,7 +250,7 @@ color: var(--white);
 }
 
 header .left-paragraph {
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .paragraph {
@@ -240,7 +261,7 @@ header .left-paragraph {
 }
 .bg-violet {
 height: 700px;
-  background-color: var(--black);
+  background-color: var(--soft-blue);
   padding: 30px;
   margin: 40px auto;
   z-index: 20;
