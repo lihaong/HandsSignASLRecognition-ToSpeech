@@ -7,19 +7,22 @@
 }
 
 :root {
+  --yellow : rgb(222, 245, 229);
+  --soft-blue : rgb(153, 196, 200);
   --dark-violet: hsl(256, 26%, 20%);
   --greyish-blue: hsl(216, 30%, 68%);
   --very-dark-violet: hsl(270, 9%, 17%);
   --dark-grayish-violet: hsl(278, 67%, 2%);
   --very-light-gray: hsl(0, 0%, 98%);
-  --black: #171717;
+  --black: rgb(57, 62, 70);
   --white: #fffdfa;
-  --red: #f11e2c;
+  --red: rgb(247, 164, 164);
   --font-karla: "Karla", sans-serif;
   --font-neue: "Bebas Neue", cursive;
   --font-odibee: "Odibee Sans", cursive;
 }
 html {
+overflow: hidden;
   scroll-behavior: smooth;
 }
 body {
@@ -153,7 +156,9 @@ nav li a {
   text-transform: uppercase;
   text-decoration: none;
 }
-
+audio{
+height: 30px;
+}
 .login {
   background-color: var(--white);
   color: var(--black);
@@ -168,7 +173,7 @@ nav li a {
 /* Header styling */
 header {
 
-background-color: var(--greyish-blue);
+background-color: var(--yellow);
 
 height: 745px;
   color: var(--black);
@@ -184,13 +189,36 @@ section .container {
 
 #Application {
 height : 745px;
-padding-top: 42px;
+padding-top: 15px;
 }
-
+#space{
+width:400px;
+}
+#result{
+color: var(--black);
+font-size : 20px;
+font-weight: bolder;
+margin: 15px 0px 10px 0px;
+}
 #US {
 margin-bottom: 45px;
 }
-
+.up-btn{
+margin-top: 15px;
+margin-bottom: 10px;
+}
+.custom{
+padding: 10px 15px 10px 15px;
+height: 40px;
+font-size: 12px;
+}
+.frame img {
+border-radius: 30px;
+width: 65%;
+}
+#kalimat {
+color: var(--white);
+}
 .card {
   width: 350px;
   height: 470px;
@@ -223,7 +251,7 @@ margin-bottom: 45px;
 }
 
 header .left-paragraph {
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .paragraph {
@@ -234,14 +262,14 @@ header .left-paragraph {
 }
 .bg-violet {
 height: 700px;
-  background-color: var(--black);
+  background-color: var(--soft-blue);
   padding: 30px;
   margin: 40px auto;
   z-index: 20;
+  text-align: center;
 }
 
 .bg-violet h2 {
-text-align: center;
   color: var(--white);
   font-size: 3em;
   padding-top: 0px;
@@ -289,34 +317,4 @@ footer li a {
 .copyright .author {
   display: flex;
   justify-content: center;
-}
-
-/* Table */
-.content-table {
-  border-collapse: collapse;
-  margin: 20px 0;
-  width: 1160px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-.content-table thead tr {
-  background-color: var(--black);
-  color: var(--white);
-  text-align: left;
-}
-.content-table th,
-.content-table td {
-  padding: 12px 15px;
-}
-
-.content-table td {
-  max-width: 180px;
-  overflow: hidden;
-}
-.content-table td a {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.content-table tbody tr {
-  border-bottom: 1px solid var(--black);
 }

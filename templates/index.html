@@ -6,8 +6,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" sizes="32x32" href="./images/logo.png" />
-    <title>Republic Of Gamers Nation</title>
+    <title>Teman SIBI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/client_side.css') }}" type="text/css">
   </head>
 
   <body>
@@ -15,9 +19,9 @@
       <div class="container">
         <div class="flex">
           <div class="img-wrapper">
-            <img src="{{ url_for('static', filename='images/SIBI.png') }}" alt="logo" />
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" />
           </div>
-          
+
           <ul id="menu" class="menu">
             <li>
               <a class="btn" href="#info">Information</a>
@@ -40,35 +44,49 @@
           <div class="left-paragraph ">
             <h1>Our Mission</h1>
             <p>
-              Unite gamers of diverse backgrounds
-              to achieve their potential together
-              in play. Through innovative
-              technology and exceptional
-              experiences, we can push boundaries
-              to create a world without limits.
+              Teman SIBI is an application based on artificial intelligence that is useful for translating based on American sign language and has an output in the form of sound. We have a dream to provide a friendly environment for persons with disabilities, so that there are no difficulties in carrying out their daily lives.
             </p>
+          </div>
+          <div>
+            <img margin-left="350px" width="500px" src="{{ url_for('static', filename='images/char.png') }}"/>
           </div>
         </div>
       </div>
     </header>
-
 
     <section id="Application" class="container" >
       <div class="bg-violet">
         <div>
           <h2>Application</h2>
         </div>
-        <div>
-        <img src="{{ url_for('video') }}" width="100%"/>
+        <div class="frame">
+        <img class="video" src="{{ url_for('video') }}"/>
         </div>
+        <!--        DISINI MULAI-->
+        <p id="result">{{ x }}</p>
+
+          <!-- Tombol Prediksi -->
+        <div class="up-btn">
+          <button id="insert" class="btn login custom">Insert</button>
+          <button id="space" class="btn login custom">Space</button>
+          <button id="delete" class="btn login custom">Delte</button>
+        </div>
+        <div class="btm-btn custom">
+          <button id="export" class="btn login custom">Export</button>
+        </div>
+
+
       </div>
     </section>
+
+
+
 
     <section id="US" class="container">
       <h2  >Our Team</h2>
       <div class="flex">
         <div class="card product">
-          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />
+<!--          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />-->
           <h3 class="product-title">
             Muhammad Fajar Andikha
           </h3>
@@ -78,32 +96,32 @@
         </div>
 
         <div class="card product">
-          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />
+<!--          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />-->
           <h3 class="product-title">
-            Muhammad Fajar Andikha
+            Nidya Inaya Andayani
           </h3>
           <p class="paragraph">
-            UPN Veteran Yogyakarta
+            Institut Teknologi Telkom Purwokerto
           </p>
         </div>
 
         <div class="card product">
-          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />
+<!--          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />-->
           <h3 class="product-title">
-            Muhammad Fajar Andikha
+            Jasmine Avrile Kaniasari H.
           </h3>
           <p class="paragraph">
-            UPN Veteran Yogyakarta
+            UPN Veteran Jawa Timur
           </p>
         </div>
 
         <div class="card product">
-          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />
+<!--          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />-->
           <h3 class="product-title">
-            Muhammad Fajar Andikha
+            M. Andrew Arjunanda Yasin
           </h3>
           <p class="paragraph">
-            UPN Veteran Yogyakarta
+            UPN Veteran Jawa Timur
           </p>
         </div>
 
@@ -118,22 +136,22 @@
           <ul class="flex">
             <li>
               <a href="https://rog.asus.com/id/">
-                <img src="./images/icon-facebook.svg" alt="facebook" />
+                <img src="{{ url_for('static', filename='images/icon-facebook.svg') }}" alt="facebook" />
               </a>
             </li>
             <li>
               <a href="https://rog.asus.com/id/">
-                <img src="./images/icon-twitter.svg" alt="twitter" />
+                <img src="{{ url_for('static', filename='images/icon-twitter.svg') }}" alt="twitter" />
               </a>
             </li>
             <li>
               <a href="https://rog.asus.com/id/">
-                <img src="./images/icon-pinterest.svg" alt="pinterest" />
+                <img src="{{ url_for('static', filename='images/icon-pinterest.svg') }}" alt="pinterest" />
               </a>
             </li>
             <li>
               <a href="https://rog.asus.com/id/">
-                <img src="./images/icon-instagram.svg" alt="instagram" />
+                <img src="{{ url_for('static', filename='images/icon-instagram.svg') }}" alt="instagram" />
               </a>
             </li>
           </ul>
@@ -184,8 +202,7 @@
 
       <div class="copyright">
         <span class="author">
-          Crafted with Effort by Muhammad Fajar
-          Andikha & Gilang Yoenal Marinta, © 2021
+          Crafted with Effort by Ular 5, © 2022
         </span>
       </div>
     </footer>
