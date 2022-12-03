@@ -1,25 +1,12 @@
-# hand-gesture-recognition-using-mediapipe
-Estimate hand pose for ASL(American Sign Language) using MediaPipe (Python version).<br> Ini adalah sampel
-program yang mengenali tanda tangan dan gerakan jari dengan MLP sederhana menggunakan keypoint yang terdeteksi.
+# Sistem Penerjemah Bahasa Isyarat Menggunakan Hand Gesture
+
+Mengkalsifikasi hand gesture dengan standar ASL(American Sign Language) menggunakan MediaPipe (Python version).<br> Ini adalah aplikasi yang mengenali Hand Gesture (bahasa Isyarat) dengan MLP sederhana menggunakan keypoint yang terdeteksi.
 <br> ❗ _️**Versi modifikasi dari [original repo](https://github.com/Kazuhito00/hand-gesture-recognition-using-mediapipe).**_ ❗
+<br> ❗ _️**Versi bahasa inggris [Translated repo](https://github.com/kinivi/hand-gesture-recognition-mediapipe).**_ ❗
 <br> 
 ![mqlrf-s6x16](https://user-images.githubusercontent.com/37477845/102222442-c452cd00-3f26-11eb-93ec-c387c98231be.gif)
 
-This repository contains the following contents.
-* Sample program
-* Hand sign recognition model(TFLite)
-* Finger gesture recognition model(TFLite)
-* Learning data for hand sign recognition and notebook for learning
-* Learning data for finger gesture recognition and notebook for learning
-
-# Requirements
-* mediapipe 0.8.11
-* OpenCV 4.6.0.66
-* Tensorflow 2.10.0 <br>tf-nightly 2.5.0.dev or later (Only when creating a TFLite for an LSTM model)
-* scikit-learn 1.1.3 or Later (Only if you want to display the confusion matrix) 
-* matplotlib 3.6.2 or Later (Only if you want to display the confusion matrix)
-* gTTS 2.2.4
-
+Repository ini merupakan aplikasi yang dideploy menggunakan Flask tetapi masih secara local server.
 
 # Demo Program
 Cara run.
@@ -29,50 +16,14 @@ python app.py
 # ASL
 ![image](https://user-images.githubusercontent.com/54676003/202891969-7de03906-426a-46a9-8c3e-5b66401b7365.png)
 
-# Petunjuk : 
-* Tekan S untuk Capture Prediksi menjadi word
-* Tekan V untuk memberikan spasi pada kata
-* Tekan X untuk export kalimat menjadi voice
-
-The following options can be specified when running the demo.
-* --device<br>Specifying the camera device number (Default：0)
-* --width<br>Width at the time of camera capture (Default：960)
-* --height<br>Height at the time of camera capture (Default：540)
-* --use_static_image_mode<br>Whether to use static_image_mode option for MediaPipe inference (Default：Unspecified)
-* --min_detection_confidence<br>
-Detection confidence threshold (Default：0.5)
-* --min_tracking_confidence<br>
-Tracking confidence threshold (Default：0.5)
-
-# Directory
-<pre>
-│  app.py
-│  keypoint_classification.ipynb
-│  point_history_classification.ipynb
-│  
-├─model
-│  ├─keypoint_classifier
-│  │  │  keypoint.csv
-│  │  │  keypoint_classifier.hdf5
-│  │  │  keypoint_classifier.py
-│  │  │  keypoint_classifier.tflite
-│  │  └─ keypoint_classifier_label.csv
-│  │          
-│  └─point_history_classifier
-│      │  point_history.csv
-│      │  point_history_classifier.hdf5
-│      │  point_history_classifier.py
-│      │  point_history_classifier.tflite
-│      └─ point_history_classifier_label.csv
-│          
-└─utils
-    └─cvfpscalc.py
-</pre>
-### app.py
-This is a sample program for inference.<br>
-In addition, learning data (key points) for hand sign recognition,<br>
-You can also collect training data (index finger coordinate history) for finger gesture recognition.
-
+# Demo Aplikasi
+![Copy of SIBI (2)](https://user-images.githubusercontent.com/54676003/205431758-a416dec9-712b-4d33-a839-fe2634339a31.png)
+Aplikasi ini memiliki beberapa fitur: 
+    a. insert : untuk menyimpan huruf hasil live prediction agar dapat disusun menjadi kalimat
+    b. space : untuk menambahkan spasi antar kata ketika diinginkan
+    c. delete : untuk menghapus input yang tidak sesuai
+    d. export : untuk export kalimat yang sudah disimpan menjadi speech
+    
 ### keypoint_classification.ipynb
 This is a model training script for hand sign recognition.
 
