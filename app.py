@@ -23,7 +23,6 @@ app = Flask(__name__)
 data = " "
 counter = 0
 
-
 @app.route('/insert', methods=['GET', 'POST'])
 def insert():
     global data, counter
