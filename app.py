@@ -351,13 +351,13 @@ def pre_process_point_history(image, point_history):
 #     if mode == 0:
 #         pass
 #     if mode == 1 and (0 <= number <= 9):
-#         csv_path = 'model/keypoint_classifier/keypoint.csv'
+#         csv_path = 'model/keypoint_classifier/keypoint.cs'
 #         with open(csv_path, 'a', newline="") as f:
 #             writer = csv.writer(f)
 #             writer.writerow([number+20, *landmark_list])
 #
 #     if mode == 2 and (0 <= number <= 9):
-#         csv_path = 'model/point_history_classifier/point_history.csv'
+#         csv_path = 'model/point_history_classifier/point_history.cs'
 #         with open(csv_path, 'a', newline="") \
 #                 as f:
 #             writer = csv.writer(f)

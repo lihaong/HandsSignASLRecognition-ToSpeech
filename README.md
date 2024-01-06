@@ -55,7 +55,7 @@ Key point coordinates didapatkan melalui 4 tahap pre-processing ④.<br>
 <img src="https://user-images.githubusercontent.com/37477845/102244114-418a3c00-3f3f-11eb-8eef-f658e5aa2d0d.png" width="80%"><br><br>
 
 #### Arsitektur Model
-The image of the model prepared in "[keypoint_classification.ipynb](keypoint_classification.ipynb)" is as follows.
+The image of the model prepared in "[keypoint_classification.ipynb]" is as follows.
 <img src="https://user-images.githubusercontent.com/37477845/102246723-69c76a00-3f42-11eb-8a4b-7c6b032b7e71.png" width="50%"><br><br>
 
 
