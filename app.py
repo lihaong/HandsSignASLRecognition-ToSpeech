@@ -15,7 +15,7 @@ from gtts import gTTS
 from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
-from flask import Flask, render_template, Response, jsonify, url_for
+from flask import Flask, render_template, Response, jsonify
 
 
 app = Flask(__name__)

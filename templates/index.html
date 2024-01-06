@@ -5,13 +5,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="static/images/logo.png" />
     <title>Teman SIBI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/client_side.css') }}" type="text/css">
   </head>
 
   <body>
@@ -28,9 +26,6 @@
             </li>
             <li>
               <a class="btn" href="#Application">Application</a>
-            </li>
-            <li>
-              <a class="btn" href="#US">Our Team</a>
             </li>
 
           </ul>
@@ -77,57 +72,6 @@
 
 
       </div>
-    </section>
-
-
-
-
-    <section id="US" class="container">
-      <h2  >Our Team</h2>
-      <div class="flex">
-        <div class="card product">
-<!--          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />-->
-          <h3 class="product-title">
-            Muhammad Fajar Andikha
-          </h3>
-          <p class="paragraph">
-            UPN Veteran Yogyakarta
-          </p>
-        </div>
-
-        <div class="card product">
-<!--          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />-->
-          <h3 class="product-title">
-            Nidya Inaya Andayani
-          </h3>
-          <p class="paragraph">
-            Institut Teknologi Telkom Purwokerto
-          </p>
-        </div>
-
-        <div class="card product">
-<!--          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />-->
-          <h3 class="product-title">
-            Jasmine Avrile Kaniasari H.
-          </h3>
-          <p class="paragraph">
-            UPN Veteran Jawa Timur
-          </p>
-        </div>
-
-        <div class="card product">
-<!--          <img class="product-img" src="{{ url_for('static', filename='images/fajar.png') }}" alt="graphics" />-->
-          <h3 class="product-title">
-            M. Andrew Arjunanda Yasin
-          </h3>
-          <p class="paragraph">
-            UPN Veteran Jawa Timur
-          </p>
-        </div>
-
-      </div>
-
-
     </section>
 
     <footer>
