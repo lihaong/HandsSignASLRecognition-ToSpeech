@@ -10,72 +10,25 @@ from collections import deque
 import cv2 as cv
 import numpy as np
 import mediapipe as mp
-from gtts import gTTS
 
 from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
-from flask import Flask, render_template, Response, jsonify
+from flask import Flask, render_template, Response
 
 
 app = Flask(__name__)
 
-data = " "
-counter = 0
 
-# @app.route('/insert', methods=['GET', 'POST'])
-# def insert():
-#     global data, counter
-#     save_words(data, counter)
-#     return jsonify('', render_template('text_model.html', x=readText()))
-#
-# @app.route('/delete', methods=['GET', 'POST'])
-# def delete():
-#     word = readText()
-#     newWord = word[0:-1]
-#     save_words(newWord, 0)
-#     return jsonify({'link': "hello"}, render_template('text_model.html', x=readText()))
 
 @app.route('/')
 def index():
-    return render_template('index.html', x=data)
+    return render_template('index.html')
 
 @app.route('/video')
 def video():
     return Response(main(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-# @app.route("/space", methods=['GET', 'POST'])
-# def space():
-#     space = " "
-#     save_words(space, counter)
-#     return jsonify('', render_template('text_model.html', x=readText()))
-#
-# @app.route("/export", methods=['GET', 'POST'])
-# def export():
-#     exportText()
-#     return jsonify('', render_template('text_model.html'))
-#
-# def readText():
-#     f = open("sentence.txt", "r")
-#     word = f.read()
-#     return word
-
-# def save_words(word, mode):
-#     global counter
-#     if mode == 0:
-#         f = open("sentence.txt", "w")
-#         f.write(word)
-#         f.close()
-#         counter = 1
-#     else:
-#         f = open("sentence.txt", "a")
-#         f.write(word)
-#         f.close()
-
-# def exportText():
-#     text = open("sentence.txt", "r").read()
-#     text2speech = gTTS(text=text, lang="id", slow=False)
-#     text2speech.save('static/audio/exportSpeech.mp3')
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -100,7 +53,6 @@ def get_args():
 
 
 def main():
-    global data
     # Argument parsing #################################################################
     args = get_args()
 
@@ -231,7 +183,6 @@ def main():
                     keypoint_classifier_labels[hand_sign_id],
                     point_history_classifier_labels[most_common_fg_id[0][0]],
                 )
-                data = words
 
         else:
             point_history.append([0, 0])
