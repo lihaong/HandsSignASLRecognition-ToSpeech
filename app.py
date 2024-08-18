@@ -1,5 +1,4 @@
 from ASL import main_asl
-from Gesture import main_gesture
 from flask import Flask, render_template, Response, jsonify
 from sentence import insert_word, read_text, delete_word, insert_space
 import atexit
@@ -29,19 +28,9 @@ def asl():
     return render_template('asl.html')
 
 
-@app.route('/gesture')
-def gesture():
-    return render_template('gesture.html')
-
-
 @app.route('/asl_video')
 def asl_video():
     return Response(main_asl(), mimetype='multipart/x-mixed-replace; boundary=frame')
-
-
-@app.route('/gesture_video')
-def gesture_video():
-    return Response(main_gesture(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @app.route('/insert', methods=['GET', 'POST'])

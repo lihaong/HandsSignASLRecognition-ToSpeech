@@ -1,4 +1,2 @@
-from model.keypoint_classifier.keypoint_classifier1 import KeyPointClassifier1
-from model.keypoint_classifier.keypoint_classifier2 import KeyPointClassifier2
-from model.point_history_classifier.point_history_classifier1 import PointHistoryClassifier1
-from model.point_history_classifier.point_history_classifier2 import PointHistoryClassifier2
+from model.keypoint_classifier.keypoint_classifier import KeyPointClassifier
+from model.point_history_classifier.point_history_classifier import PointHistoryClassifier

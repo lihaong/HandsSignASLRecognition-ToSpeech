@@ -8,8 +8,8 @@ import cv2 as cv
 import mediapipe as mp
 
 from CvFpsCalc import CvFpsCalc
-from model import KeyPointClassifier1
-from model import PointHistoryClassifier1
+from model import KeyPointClassifier
+from model import PointHistoryClassifier
 
 
 from hand_tracking import calc_landmark_list, pre_process_landmark, pre_process_point_history, \
@@ -67,18 +67,18 @@ def main_asl():
         min_tracking_confidence=min_tracking_confidence,
     )
 
-    keypoint_classifier = KeyPointClassifier1()
-    point_history_classifier = PointHistoryClassifier1()
+    keypoint_classifier = KeyPointClassifier()
+    point_history_classifier = PointHistoryClassifier()
 
     # Read labels ###########################################################
-    with open('model/keypoint_classifier/keypoint_classifier_label1.csv',
+    with open('model/keypoint_classifier/keypoint_classifier_label.csv',
               encoding='utf-8-sig') as f:
         keypoint_classifier_labels = csv.reader(f)
         keypoint_classifier_labels = [
             row[0] for row in keypoint_classifier_labels
         ]
     with open(
-            'model/point_history_classifier/point_history_classifier_label1.csv',
+            'model/point_history_classifier/point_history_classifier_label.csv',
             encoding='utf-8-sig') as f:
         point_history_classifier_labels = csv.reader(f)
         point_history_classifier_labels = [

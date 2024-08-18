@@ -20,7 +20,7 @@ def insert_word():
 
 
 def insert_space():
-    space = "   "
+    space = " "
     f = open("static/sentence.txt", "a")
     f.write(space)
     f.close()
