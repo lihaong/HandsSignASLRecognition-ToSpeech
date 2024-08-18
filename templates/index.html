@@ -1,155 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
 
-  <!DOCTYPE html>
-  <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="static/images/logo.png" />
+  <title>Teman SIBI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" sizes="32x32" href="static/images/logo.png" />
-    <title>Teman SIBI</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<!--    <script src="{{ url_for('static', filename='/js/script.js') }}"></script>-->
-  </head>
+<body>
+  <nav>
+    <div class="container">
+      <div class="flex">
+        <h3 class="title">
+          Teman SIBI
+        </h3>
 
-  <body>
-    <nav>
-      <div class="container">
-        <div class="flex">
-          <div class="img-wrapper">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" />
-          </div>
-
-          <ul id="menu" class="menu">
-            <li>
-              <a class="btn" href="#info">Our Mission</a>
-            </li>
-            <li>
-              <a class="btn" href="#Application">Application</a>
-            </li>
-
-          </ul>
-        </div>
+        <ul id="menu">
+          <li><a href="{{ url_for('index') }}">Our Mission</a></li>
+          <li><a href="{{ url_for('asl') }}">Application</a></li>
+<!--          <li><a href="{{ url_for('gesture') }}">Basic Gesutre</a></li>-->
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <header id="info">
-      <div class="container flex">
-        <div class="flex align-start">
-          <div class="left-paragraph ">
-            <h1>Our Mission</h1>
-            <p>
-              Teman SIBI is an application based on artificial intelligence that is useful for translating based on American sign language and has an output in the form of sound. We have a dream to provide a friendly environment for persons with disabilities, so that there are no difficulties in carrying out their daily lives.
-            </p>
-          </div>
-          <div>
-            <img margin-left="350px" width="500px" src="{{ url_for('static', filename='images/char.png') }}"/>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <section id="Application" class="container" >
-      <div class="bg-violet">
+  <header id="about">
+    <div class="container">
+      <div class="flex align-start reverse-mobile">
         <div>
-          <h2>Application</h2>
+          <h1 class="line-top">
+            Hello, World!
+          </h1>
+          <h3>
+            Teman SIBI is an application based on artificial intelligence that is useful for translating based on American Sign Language. We have a dream to provide a friendly environment for persons with disabilities, so that there are no difficulties in carrying out their daily lives.
+          </h3>
         </div>
-        <div class="frame">
-        <img class="video" src="{{ url_for('video') }}"/>
-        </div>
-        <!--        DISINI MULAI-->
-<!--        <p id="result">{{ x }}</p>-->
 
-<!--          &lt;!&ndash; Tombol Prediksi &ndash;&gt;-->
-<!--        <div class="up-btn">-->
-<!--          <button id="insert" class="btn login custom">Insert</button>-->
-<!--          <button id="space" class="btn login custom">Space</button>-->
-<!--          <button id="delete" class="btn login custom">Delte</button>-->
-<!--        </div>-->
-<!--        <div class="btm-btn custom">-->
-<!--          <button id="export" class="btn login custom">Export</button>-->
-<!--        </div>-->
-
-
+        <a class="vector" href="https://www.freepik.com/vectors/school" target="_blank">
+          <img
+            src="static/images/header.jpg"
+            alt="intro"
+            class="boysvector"
+          />
+        </a>
       </div>
-    </section>
+    </div>
+  </header>
 
-    <footer>
-      <div class="container">
-        <div class="flex border-bottom">
-          <ul class="flex">
-            <li>
-              <a href="https://rog.asus.com/id/">
-                <img src="{{ url_for('static', filename='images/icon-facebook.svg') }}" alt="facebook" />
-              </a>
-            </li>
-            <li>
-              <a href="https://rog.asus.com/id/">
-                <img src="{{ url_for('static', filename='images/icon-twitter.svg') }}" alt="twitter" />
-              </a>
-            </li>
-            <li>
-              <a href="https://rog.asus.com/id/">
-                <img src="{{ url_for('static', filename='images/icon-pinterest.svg') }}" alt="pinterest" />
-              </a>
-            </li>
-            <li>
-              <a href="https://rog.asus.com/id/">
-                <img src="{{ url_for('static', filename='images/icon-instagram.svg') }}" alt="instagram" />
-              </a>
-            </li>
-          </ul>
-        </div>
+</body>
 
-        <div class="flex align-start">
-          <div>
-            <h4>Our company</h4>
-            <ul>
-              <li><a href="#">How we work</a></li>
-              <li><a href="#">Cookies</a></li>
-              <li><a href="#">Reviews</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4>Help me</h4>
-            <ul>
-              <li><a href="#">FAQ</a></li>
-              <li>
-                <a href="#">Terms of use</a>
-              </li>
-              <li>
-                <a href="#">Privacy policy</a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4>Contact</h4>
-            <ul>
-              <li><a href="#">Sales</a></li>
-              <li><a href="#">Support</a></li>
-              <li><a href="#">Live chat</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4>Others</h4>
-            <ul>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Press</a></li>
-              <li><a href="#">Licenses</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="copyright">
-        <span class="author">
-          Crafted with Effort by Ular 5, © 2022
-        </span>
-      </div>
-    </footer>
-  </body>
-
-  </html>
+</html>
