@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="static/images/logo.png" />
+    <title>Teman SIBI - Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='/js/script.js') }}"></script>
+
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <div class="flex">
+                <h3 class="title">
+                    Teman SIBI
+                </h3>
+
+                <ul id="menu">
+                    <li><a href="{{ url_for('index') }}">Our Mission</a></li>
+                    <li><a href="{{ url_for('asl') }}">Application</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="Application" class="container">
+        <div class="bg">
+            <div class="title-app">
+                Application American Sign Language
+            </div>
+
+            <div class="centering">
+                <img class="video" src="{{ url_for('asl_video') }}" />
+                <div id="result" class="hidden">
+                    <p>{{ x }}</p>
+                </div>
+
+                <div class="up-btn">
+                    <button id="insert" class="btn-input">Insert</button>
+                    <button id="space" class="btn-input">Space</button>
+                    <button id="delete" class="btn-input">Delte</button>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

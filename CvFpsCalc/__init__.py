@@ -1,0 +1,1 @@
+from CvFpsCalc.cvfpscalc import CvFpsCalc
